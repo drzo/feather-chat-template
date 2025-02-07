@@ -1,6 +1,6 @@
 # Featherless Chat Template
 
-A production-ready chat interface for the Featherless AI platform. Get started with AI-powered chat in minutes.
+A starter template for a chat interface for the Featherless AI platform. Get started with AI-powered chat in minutes.
 
 ## 🚀 Quick Start
 

@@ -55,6 +55,12 @@ Modify API calls in `src/services/api.js` to add custom endpoints or parameters.
    ```
 
 2. Deploy to your preferred platform (Vercel, Netlify, etc.)
+# Community & Support
+Our growing community of developers, enthusiasts, and AI practitioners is here to help you get the most out of Featherless:
+- Join our [Discord](https://discord.gg/7gybCMPjVA) community to connect with other users
+- Check out our [Zero to AI blog](https://featherless.ai/blog/zero-to-ai-deploying-language-models-without-the-infrastructure-headache)
+- Follow us on [X](https://x.com/FeatherlessAI) for the latest updates
+- Try out [DeepSeek-R1](https://featherless.ai/blog/deepseek-r1-available-for-premium-users) with unlimited tokens on our premium plan!
 
 ## 📝 License
 

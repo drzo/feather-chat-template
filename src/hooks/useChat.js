@@ -59,12 +59,12 @@ export function useChat() {
       // Get API response
       const response = await chatCompletion([...currentConversation.messages, userMessage], selectedModel);
 
-      // Add assistant message
+      // Update this part to only add the assistant message
       setConversations(prev => prev.map(conv =>
         conv.id === currentConversationId
           ? { 
               ...conv, 
-              messages: [...conv.messages, userMessage, { role: 'assistant', content: response }]
+              messages: [...conv.messages, { role: 'assistant', content: response }]
             }
           : conv
       ));

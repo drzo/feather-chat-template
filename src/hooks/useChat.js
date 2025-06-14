@@ -25,17 +25,27 @@ export function useChat() {
   };
 
   const updateConversationTitle = async (conversationId, firstMessage) => {
-    // Generate a title based on the first message
-    const response = await chatCompletion([
-      { role: 'system', content: 'Generate a very brief title (max 6 words) for a conversation that starts with this message. Response should be just the title, nothing else.' },
-      { role: 'user', content: firstMessage }
-    ], selectedModel);
+    try {
+      // Generate a title based on the first message
+      const response = await chatCompletion([
+        { role: 'system', content: 'Generate a very brief title (max 6 words) for a conversation that starts with this message. Response should be just the title, nothing else.' },
+        { role: 'user', content: firstMessage }
+      ], selectedModel);
 
-    setConversations(prev => prev.map(conv => 
-      conv.id === conversationId 
-        ? { ...conv, title: response }
-        : conv
-    ));
+      setConversations(prev => prev.map(conv => 
+        conv.id === conversationId 
+          ? { ...conv, title: response }
+          : conv
+      ));
+    } catch (error) {
+      console.error('Failed to generate conversation title:', error);
+      // Set a default title if API call fails
+      setConversations(prev => prev.map(conv => 
+        conv.id === conversationId 
+          ? { ...conv, title: 'Untitled Chat' }
+          : conv
+      ));
+    }
   };
 
   const sendMessage = async (content) => {

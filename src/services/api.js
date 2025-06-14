@@ -15,7 +15,23 @@ export async function chatCompletion(messages, model) {
       })
     });
 
+    // Check if the response is successful
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(`API request failed: ${response.status} ${response.statusText}. ${errorData.error?.message || ''}`);
+    }
+
     const data = await response.json();
+    
+    // Validate the response structure
+    if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
+      throw new Error('API response missing expected choices array');
+    }
+    
+    if (!data.choices[0].message || !data.choices[0].message.content) {
+      throw new Error('API response missing expected message content');
+    }
+    
     return data.choices[0].message.content;
   } catch (error) {
     console.error('Chat completion error:', error);
@@ -38,7 +54,19 @@ export async function textCompletion(prompt, model, maxTokens=500) {
       })
     });
 
+    // Check if the response is successful
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(`API request failed: ${response.status} ${response.statusText}. ${errorData.error?.message || ''}`);
+    }
+
     const data = await response.json();
+    
+    // Validate the response structure
+    if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
+      throw new Error('API response missing expected choices array');
+    }
+    
     return data.choices[0].text;
 
   } catch (error) {
